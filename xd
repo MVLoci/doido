@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+#include <cstdlib>
+using namespace std;
+int main(){
+    srand((unsigned)time(NULL));
+    int num,n,intentos=1,b=1,dif,intmax;
+    double puntos=1000.0;
+    while(b==1){
+    system("clear");
+    cout<<"*"<<endl;
+    cout<<"*Bienvenido al juego de la adivinanza"<<endl;
+    cout<<"*"<<endl;
+    cout<<"El rango es de 1-100"<<endl;
+    num=rand()%100+1;
+    cout<<num<<endl;
+    cout<<"En que dificultad quieres jugar? PRINCIPIANTE(1), NORMAL(2), EXPERTO(3)"<<endl;
+    cin>>dif;
+    if(dif==1){
+        intmax=15;
+    }
+        else if(dif==2){
+            intmax=10;
+        }
+            else if(dif==3){
+                intmax=5;
+            }
+            else if(dif>=4){
+                cout<<"Tu eres bien pendejo no?"<<endl;
+                return 0;
+            }
+    system("clear");
+    cout<<"Intento "<<intentos<<endl;
+    cout<<"Trata de adivinar el numero secreto"<<endl;
+    cin>>n;
+    intentos++;
+    while(n!=num and intentos<=intmax){
+        system("clear");
+        double puntos_perdidos = abs(n-num)/2.0;
+        puntos=puntos-puntos_perdidos;
+        cout<<"Intento "<<intentos<<endl;
+        if(num>n){
+            cout<<"El numero secreto es mayor a "<<n<<endl;
+        }else{
+            cout<<"El numero secreto es menor a "<<n<<endl;
+        }
+        cout<<"Vuelve a intentar"<<endl;
+        cin>>n;
+        intentos++;
+    }
+    if(n==num){
+    cout<<"Felicidades lo lograste en "<<intentos<<" intentos"<<endl;
+    }
+    else if(n!=num){
+        cout<<"Perdiste :( intentalo nuevamente"<<endl;
+        puntos=0;
+    }
+    cout.precision(2);
+    cout<<fixed;
+    cout<<"Su puntuacion fue de " <<puntos<< " puntos"<<endl;
+    cout<<"Quieres volver a jugar? SI(1) o NO (0)"<<endl;
+    cin>>b;
+    if(b==1)
+    intentos=1;
+    }
+    system("clear");
+return 0;
+}
